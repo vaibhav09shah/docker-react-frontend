@@ -1,0 +1,27 @@
+TO specify a dockerfile for build in dev env , use following command . This command can be 
+used to build docker with a custom named docker file
+------ docker build -f Dockerfile.dev .
+------ docker build -t vaibhav09dev/react-frontend -f Dockerfile.dev . (Tagged)
+
+Adding Volumes while running docker 
+------ docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app vaibhav09dev/react-frontend
+
+Docker compose commands
+docker-compose up --build 
+docker-compose down
+
+Docker attach commands
+docker attach containerId
+
+
+Steps to create your production Dockerfile 
+    Build Phase 
+        Use node:alpine
+        copy package.json
+        npm install dependencies
+        npm run build
+
+    Run Phase
+        use nginx
+        copy result of npm run build
+        start nginx to serve the content
